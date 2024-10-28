@@ -1,8 +1,6 @@
 import { Profile, Sidebar } from "./components";
 
-interface DashboardProps {}
-
-export default function Dashboard({}: DashboardProps) {
+export default function Dashboard() {
   return (
     <div
       style={{

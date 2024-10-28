@@ -1,25 +1,42 @@
 import { useState } from "react";
 
-import { UserContext } from "./contexts/userContext";
 import Dashboard from "./dashboard";
+import { UserContext } from "./context/userContext";
+import { CountContext } from "./context/countContext";
 
 export interface User {
   email: string;
   userName: string;
 }
 
-interface DemoProps {}
+export default function Demo() {
+  const [count, setCount] = useState(0);
 
-export default function Demo({}: DemoProps) {
   const [user] = useState<User>({
-    email: "francois@kadea.co",
-    userName: "fdis111",
+    email: "toto@toto.xo",
+    userName: "string",
   });
 
+  function increment() {
+    setCount(count + 1);
+  }
+  function decrement() {
+    setCount(count - 1);
+  }
   return (
     <div>
       <UserContext.Provider value={user}>
-        <Dashboard />
+        <CountContext.Provider
+          value={{
+            count,
+            increment,
+            decrement,
+          }}
+        >
+          <Dashboard />
+          <button onClick={decrement}>-</button>
+          <button onClick={increment}>+</button>
+        </CountContext.Provider>
       </UserContext.Provider>
     </div>
   );
